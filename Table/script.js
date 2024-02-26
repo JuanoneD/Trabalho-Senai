@@ -1,10 +1,9 @@
 function adicionarItem(){
-    var entrada = document.getElementById("entrada").value
-    var saida = document.getElementById("saida").value
+    var entrada = document.getElementById("entrada").value.replace(/\:/g, '.');
+    var saida = document.getElementById("saida").value.replace(/\:/g, '.');
     var nome = document.getElementById("nome").value
-    var carga_horario = document.getElementById("carga_horario").value
-    var valor_hora = document.getElementById("valor_hora").value
-
+    var carga_horario = document.getElementById("carga_horario").value.replace(/\:/g, '.');
+    var valor_hora = document.getElementById("valor_hora").value.replace(/\:/g, '.');
 
     if (!nome || !entrada || !saida|| !carga_horario || !valor_hora){
         alert("Preencha o campo");
@@ -26,8 +25,6 @@ function adicionarItem(){
 
 
 
-
-
     celulanome.innerHTML = nome;
     celulaentrada.innerHTML = entrada;
     celulasaida.innerHTML = saida;
@@ -45,9 +42,9 @@ function adicionarItem(){
     }else{
         celularHorasextras.innerHTML = 0;
     }
-    celuladesconto.innerHTML = celulaHorasfaltantes * valor_hora;
-    celulavalorhoraextra.innerHTML = celularHorasextras * (valor_hora/2)
-    celulatotal.innerHTML = valor_hora * carga_horario - celuladesconto + celulavalorhora
+    celuladesconto.innerHTML = (horasTrabalhadas - carga_horario) * valor_hora;
+    celulavalorhoraextra.innerHTML = (horasTrabalhadas - carga_horario) * (valor_hora/2)
+    celulatotal.innerHTML = valor_hora * carga_horario - (horasTrabalhadas - carga_horario) * valor_hora + (horasTrabalhadas - carga_horario) * (valor_hora/2)
 
 
     
