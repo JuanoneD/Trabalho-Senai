@@ -32,21 +32,27 @@ function adicionarItem(){
     celulavalorhora.innerHTML = valor_hora;
     horasTrabalhadas = Math.floor(saida) - Math.floor(entrada);
     celulaTempoTraba.innerHTML = horasTrabalhadas
+    horas = (horasTrabalhadas - carga_horario )* (-1)
+
+    console.log(celulatotal.value)
     if  (horasTrabalhadas < carga_horario){
         celulaHorasfaltantes.innerHTML = horasTrabalhadas - carga_horario;
-    }else{
-        celulaHorasfaltantes.innerHTML = 0;
-    }
-    if (horasTrabalhadas > carga_horario){
+        celulatotal.innerHTML =  (horas*valor_hora - carga_horario * valor_hora)*(-1);
+        celuladesconto.innerHTML = horas * valor_hora;
+        celularHorasextras.innerHTML = 0;
+    }else if (horasTrabalhadas > carga_horario){
         celularHorasextras.innerHTML = horasTrabalhadas - carga_horario;
+        celulatotal.innerHTML = horas * (valor_hora / 2) + horasTrabalhadas * valor_hora ;
+        celulavalorhoraextra.innerHTML = (horasTrabalhadas - carga_horario) * (valor_hora / 2);
+        celulaHorasfaltantes.innerHTML = 0;
+        celuladesconto.innerHTML = 0;
     }else{
         celularHorasextras.innerHTML = 0;
+        celulaHorasfaltantes.innerHTML = 0;
+        celuladesconto.innerHTML = 0;
+        celulatotal.innerHTML = horasTrabalhadas * valor_hora;
     }
-    celuladesconto.innerHTML = (horasTrabalhadas - carga_horario) * valor_hora;
-    celulavalorhoraextra.innerHTML = (horasTrabalhadas - carga_horario) * (valor_hora/2)
-    celulatotal.innerHTML = valor_hora * carga_horario - (horasTrabalhadas - carga_horario) * valor_hora + (horasTrabalhadas - carga_horario) * (valor_hora/2)
-
-
+    
     
 
     
